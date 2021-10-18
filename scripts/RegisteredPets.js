@@ -1,27 +1,35 @@
 import { getPets } from "./database.js"
-import { getWalkers} from "./database.js"
+import { getWalkers } from "./database.js"
 
 
-   document.addEventListener(
+document.addEventListener(
     "click",
     (clickEvent) => {
         const itemClicked = clickEvent.target
         if (itemClicked.id.startsWith("pet")) {
-            const [,petId] = itemClicked.id.split("--")
+            const [, petId] = itemClicked.id.split("--")
 
             for (const pet of pets) {
                 if (pet.id === parseInt(petId)) {
 
-                    let assignedWalker = walkers.find(assignedWalker, assignedWalker.id, walkers)
+                    let assignedWalker = walkers.find(
+                        (walkerObj) => {
+                            if (walkerObj.id === pet.walkerId) {
+                                return true
+                            } else {
+                                return false
+                            }
+                        }
+                    )
 
-                    }
                     window.alert(`${pet.name} is being walked by ${assignedWalker.name}`)
                 }
             }
         }
-   )
+    }
+)
 
-   
+
 
 
 //    let result = arr.find(function(item, index, array) {
